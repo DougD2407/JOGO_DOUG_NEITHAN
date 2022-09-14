@@ -1,13 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jogo da cobrona</title>
 </head>
+
 <body>
-    <h1>Aqui terá um jogo</h1>
-    <h2>confia de verdade parça</h2>
+    <canvas id="stage" width="400" height="400"></canvas>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var stage = document.getElementById('stage');
+            var ctx = stage.getContext("2d");
+
+            setInterval(game, 60);
+
+            const vel = 1;
+
+            var vx = vy = 0;
+            var px = 10;
+            var py = 15;
+            var lp = 20;
+            var qp = 20;
+            var ax = ay = 15;
+
+            var trail = [];
+            tail = 5;
+
+            function game(){
+
+            px += vx;
+            py += vy;
+            if (px < 0){
+                px = qp -1;
+            }
+            if (px > qp -1){
+                px = 0;
+            }
+            if (py < 0){
+                py = qp -1;
+            }
+            if(py > qp-1){
+                py = 0;
+            }
+
+            ctx.fillStyle = "black";
+            ctx.fillRect(0,0, stage.width, stage.height);
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(ax*tp, ay*tp, tp,tp);
+            }
+
+
+        }
+    </script>
 </body>
+
 </html>
