@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Jogo da cobrona</title>
+    <title>Jogo da cobrinha</title>
 </head>
-
 <body>
-    <canvas id="stage" width="400" height="400"></canvas>
-
+ 
+    <canvas id="stage" width="600" height="600"></canvas>
     <script type="text/javascript">
+        
         window.onload = function(){
+ 
             var stage = document.getElementById('stage');
             var ctx = stage.getContext("2d");
-
-            setInterval(game, 60);
-
+            document.addEventListener("keydown", keyPush);
+            setInterval(game, 80);
+ 
             const vel = 1;
-
+ 
             var vx = vy = 0;
-            var px = 10;
+            var px =10;
             var py = 15;
-            var lp = 20;
+            var tp = 30;
             var qp = 20;
-            var ax = ay = 15;
-
+            var ax=ay=15;
+ 
             var trail = [];
             tail = 5;
-
+ 
             function game(){
-
-            px += vx;
-            py += vy;
-            if (px < 0){
-                px = qp -1;
+                px += vx;
+                py += vy;
+                if (px <0) {
+                    px = qp-1;
+                }
+                if (px > qp-1) {
+                    px = 0;
+                }
+                if (py < 0) {
+                    py = qp-1;
+                }
+                if (py > qp-1) {
+                    py = 0;
+                }
+ 
+                ctx.fillStyle = "black";
+                ctx.fillRect(0,0, stage.width, stage.height);
+ 
+                ctx.fillStyle = "red";
+                ctx.fillRect(ax*tp, ay*tp, tp,tp);
+ 
+                ctx.fillStyle = "gray";
+                for (var i = 0; i < trail.length; i++) {
+                    ctx.fillRect(trail[i].x*tp, trail[i].y*tp, tp-1,tp-1);
+                    if (trail[i].x == px && trail[i].y == py)
+                    {
+                        vx = vy=0;
+                        tail =5;
+                    }
+                }
+ 
+            
+              
+ 
+ 
             }
-            if (px > qp -1){
-                px = 0;
-            }
-            if (py < 0){
-                py = qp -1;
-            }
-            if(py > qp-1){
-                py = 0;
-            }
-
-            ctx.fillStyle = "black";
-            ctx.fillRect(0,0, stage.width, stage.height);
-
-            ctx.fillStyle = "red";
-            ctx.fillRect(ax*tp, ay*tp, tp,tp);
-            }
-
-
+ 
         }
+ 
     </script>
 </body>
-
 </html>
